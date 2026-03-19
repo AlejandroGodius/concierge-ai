@@ -1,5 +1,6 @@
 "use client";
 
+import { LanguageProvider } from "@/components/LanguageProvider";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
@@ -14,7 +15,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
+    <LanguageProvider>
       <Navbar />
       <main className="relative z-20">
         <Hero />
@@ -28,6 +29,6 @@ export default function Home() {
         <CTA />
       </main>
       <Footer />
-    </>
+    </LanguageProvider>
   );
 }

@@ -2,17 +2,19 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, MessageCircle } from "lucide-react";
-
-const links = [
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Demo", href: "#demo" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
-];
+import { Menu, X, MessageCircle, Globe } from "lucide-react";
+import { useLanguage } from "./LanguageProvider";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { lang, setLang, t } = useLanguage();
+
+  const links = [
+    { label: t("nav.howItWorks"), href: "#how-it-works" },
+    { label: t("nav.demo"), href: "#demo" },
+    { label: t("nav.pricing"), href: "#pricing" },
+    { label: t("nav.faq"), href: "#faq" },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass">
@@ -35,11 +37,20 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
+
+            <button
+              onClick={() => setLang(lang === "en" ? "es" : "en")}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white/70 hover:text-white rounded-full glass transition-colors"
+            >
+              <Globe className="w-3.5 h-3.5" />
+              {lang === "en" ? "ES" : "EN"}
+            </button>
+
             <a
               href="#pricing"
               className="px-5 py-2 text-sm font-semibold rounded-full bg-gradient-to-r from-primary to-accent text-white hover:scale-105 transition-transform"
             >
-              Get Started Free
+              {t("nav.cta")}
             </a>
           </div>
 
@@ -71,12 +82,19 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
+              <button
+                onClick={() => { setLang(lang === "en" ? "es" : "en"); setOpen(false); }}
+                className="flex items-center gap-1.5 text-sm text-white/70 hover:text-white py-2"
+              >
+                <Globe className="w-4 h-4" />
+                {lang === "en" ? "Español" : "English"}
+              </button>
               <a
                 href="#pricing"
                 onClick={() => setOpen(false)}
                 className="block text-center px-5 py-3 text-sm font-semibold rounded-full bg-gradient-to-r from-primary to-accent text-white"
               >
-                Get Started Free
+                {t("nav.cta")}
               </a>
             </div>
           </motion.div>

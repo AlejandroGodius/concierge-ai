@@ -10,6 +10,7 @@ import {
   Check,
   ChevronRight,
 } from "lucide-react";
+import { useLanguage } from "./LanguageProvider";
 
 interface Message {
   from: "guest" | "bot";
@@ -135,6 +136,7 @@ const scenarios = [
 export default function ChatDemo() {
   const [active, setActive] = useState(0);
   const [visibleMessages, setVisibleMessages] = useState<number>(0);
+  const { t } = useLanguage();
 
   const currentScenario = scenarios[active];
 
@@ -167,14 +169,14 @@ export default function ChatDemo() {
           className="text-center mb-16"
         >
           <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-cyan-400 mb-4 px-4 py-2 rounded-full glass">
-            Live Demo
+            {t("demo.badge")}
           </span>
           <h2 className="text-4xl sm:text-6xl font-black mb-5">
-            <span className="text-white">See Your </span>
-            <span className="gradient-text">Concierge in Action</span>
+            <span className="text-white">{t("demo.title.1")}</span>
+            <span className="gradient-text">{t("demo.title.2")}</span>
           </h2>
           <p className="text-lg text-text-muted max-w-2xl mx-auto">
-            Real conversations your guests will have. In any language, 24/7.
+            {t("demo.subtitle")}
           </p>
         </motion.div>
 
@@ -215,11 +217,11 @@ export default function ChatDemo() {
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-white">
-                    Hotel Concierge
+                    {t("demo.header")}
                   </div>
                   <div className="text-xs text-emerald-400 flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    Online
+                    {t("demo.online")}
                   </div>
                 </div>
               </div>
@@ -289,7 +291,7 @@ export default function ChatDemo() {
                           <div className="flex items-center gap-2 px-3 py-2 bg-primary/20 rounded-lg cursor-pointer hover:bg-primary/30 transition-colors">
                             <Check className="w-4 h-4 text-primary-light" />
                             <span className="text-xs font-medium text-primary-light">
-                              Book Now →
+                              {t("demo.book")}
                             </span>
                           </div>
                         </div>
@@ -302,7 +304,7 @@ export default function ChatDemo() {
               {/* Input bar */}
               <div className="rounded-b-[1.8rem] bg-[#1f2c34] px-4 py-3 flex items-center gap-3">
                 <div className="flex-1 bg-[#2a3942] rounded-full px-4 py-2 text-xs text-white/30">
-                  Type a message...
+                  {t("demo.type")}
                 </div>
                 <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                   <svg
